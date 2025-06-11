@@ -32,7 +32,7 @@ This end-to-end theorem proving pipeline marks a significant step forward. We wi
 - To enable a more fine-grained and reliable assessment, we propose LeanScorer, a novel framework yielding a continuous correctness score (0 to 1). This score allows for dynamic adjustment of decision thresholds according to task-specific precision/recall requirements.
 <p align="center">
     <br>
-    <img src="figures/leanscore.jpg" width="900"/>
+    <img src="figures/leanscorer.jpg" width="900"/>
     <br>
 </p>
 
