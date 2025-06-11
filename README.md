@@ -17,7 +17,7 @@ Most LLM-based theorem provers have long been constrained by the need for expert
 
 
 ## ⚠️⚠️ Ongoing Improvement
-This end-to-end theorem proving pipeline marks a significant step forward. We will continue refining our models and techniques to improve performance. For applications requiring strict accuracy, expert review is highly recommended to ensure reliability.
+This end-to-end theorem proving pipeline marks a significant step forward. We will continue refining our models and techniques to improve performance. For applications requiring strict accuracy, expert review remains highly recommended to ensure reliability.
 
 <p align="center">
     <br>
