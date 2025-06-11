@@ -6,7 +6,11 @@ Most LLM-based theorem provers have long been constrained by the need for expert
 - We also propose a **Mathesis-Prover**, which generates formal proofs from the formalized statements.
 - To evaluate the real-world applicability of end-to-end formal theorem proving, we introduce **Gaokao-Formal**, a benchmark of 488 complex problems from China’s national college entrance exam.
 
-![](figures/theorem_proving_results.pdf)
+<p align="center">
+    <br>
+    <img src="figures/theorem_proving_results.jpg" width="600"/>
+    <br>
+</p>
 
 ## 🔥🔥 Updates
 * 2025/06/10: We released our [paper](https://arxiv.org/pdf/2506.07047) on arXiv! 
@@ -17,7 +21,7 @@ This end-to-end theorem proving pipeline marks a significant step forward. We wi
 
 <p align="center">
     <br>
-    <img src="figures/pipeline.pdf" width="1000"/>
+    <img src="figures/pipeline.jpg" width="900"/>
     <br>
 </p>
 
@@ -26,11 +30,11 @@ This end-to-end theorem proving pipeline marks a significant step forward. We wi
 
 ## Leanscorer
 - To enable a more fine-grained and reliable assessment, we propose LeanScorer, a novel framework yielding a continuous correctness score (0 to 1). This score allows for dynamic adjustment of decision thresholds according to task-specific precision/recall requirements.
-<!-- <p align="center">
+<p align="center">
     <br>
-    <img src="figures/leanscorer-pipeline.pdf" width="1000"/>
+    <img src="figures/leanscore.jpg" width="900"/>
     <br>
-</p> -->
+</p>
 
 
 ## Citation
