@@ -6,6 +6,10 @@ Most LLM-based theorem provers have long been constrained by the need for expert
 - We also propose a **Mathesis-Prover**, which generates formal proofs from the formalized statements.
 - To evaluate the real-world applicability of end-to-end formal theorem proving, we introduce **Gaokao-Formal**, a benchmark of 488 complex problems from China’s national college entrance exam.
 
+<div align="center" style="line-height: 1;">
+  <a href="https://huggingface.co/huawei-ai4math"><img src="https://huggingface.co/front/assets/huggingface_logo-noborder.svg" height="16" width="16" style="vertical-align:middle"><b>HuggingFace</b></a>
+</div>
+
 <p align="center">
     <br>
     <img src="figures/theorem_proving_results.jpg" width="600"/>
