@@ -1,10 +1,14 @@
 # Mathesis: Towards Formal Theorem Proving from Natural Languages
 
-Most LLM-based theorem provers have long been constrained by the need for expert-written formal statements as inputs, limiting their applicability to real-world problems expressed in natural language. We tackle this gap with **Mathesis**, the first **end-to-end theorem proving** pipeline processing informal problem statements.
-- To enhance the formalization ability of natural language problems, we introduce **Mathesis-Autoformalizer**, which is trained using a novel reinforcement learning approach that integrates local alignment via GRPO and global alignment via DPO. We refer to this technique as Hierarchical Preference Optimization.
-- We propose **LeanScorer**, a novel evaluation method combining _LLM-based analysis_ with _Sugeno Fuzzy Integral_ for nuanced formalization assessment.
-- We also propose a **Mathesis-Prover**, which generates formal proofs from the formalized statements.
-- To evaluate the real-world applicability of end-to-end formal theorem proving, we introduce **Gaokao-Formal**, a benchmark of 488 complex problems from China’s national college entrance exam.
+Mathesis is a pipeline for studying formal theorem proving from natural language: translating informal problem statements into Lean 4 and then generating machine-verified proofs.
+
+Most LLM-based theorem provers still assume expert-written formal statements, which limits use on real problems stated in natural language. Mathesis targets autoformalization—turning informal mathematics into formal statements—with:
+
+- **Mathesis-Autoformalizer**, the first autoformalizer trained with **online reinforcement learning** (Group Relative Policy Optimization, GRPO). Rewards combine **Lean syntactic validity**, **semantic correctness**, and **prover feedback**; a second stage uses **Direct Preference Optimization (DPO)** to prefer formalizations that lead to Lean-verified proofs. We call this two-stage procedure **Hierarchical Preference Optimization (HPO)**.
+- **LeanScorer**, an evaluation framework that combines **LLM-based analysis** with the **Sugeno fuzzy integral** for fine-grained semantic assessment of formalizations.
+- **Gaokao-Formal**, a benchmark of **495** challenging proof problems derived from China’s college entrance exam (**Gaokao**), for testing autoformalization and end-to-end proving in realistic settings.
+
+**Results (from the paper).** The autoformalizer improves pass rates by **45%** on Gaokao-Formal and **6%** on MiniF2F vs. strong baselines; paired with provers, it consistently raises proving accuracy (e.g. **42%** gain for DeepSeek-Prover-V2 on Gaokao-Formal). The paper also reports large relative gains when combining the autoformalizer with existing provers on Gaokao-Formal and MiniF2F.
 
 <div align="center" style="line-height: 1;">
   <a href="https://huggingface.co/huawei-ai4math"><img src="https://huggingface.co/front/assets/huggingface_logo-noborder.svg" height="16" width="16" style="vertical-align:middle"><b>HuggingFace</b></a>
@@ -12,38 +16,40 @@ Most LLM-based theorem provers have long been constrained by the need for expert
 
 <p align="center">
     <br>
-    <img src="figures/theorem_proving_results.jpg" width="600"/>
+    <img src="figures/theorem_proving_results.png" width="600"/>
     <br>
 </p>
 
-## 🔥🔥 Updates
-* 2025/06/10: We released our [paper](https://arxiv.org/pdf/2506.07047) on arXiv! 
+## News
 
-
-## ⚠️⚠️ Ongoing Improvement
-This end-to-end theorem proving pipeline marks a significant step forward. We will continue refining our models and techniques to improve performance. For applications requiring strict accuracy, expert review remains recommended to ensure reliability.
+- **2026:** Accepted and published as a conference paper at ICLR 2026.
+- **2025/06/10:** [arXiv preprint](https://arxiv.org/abs/2506.07047) (arXiv:2506.07047).
 
 <p align="center">
     <br>
-    <img src="figures/pipeline.jpg" width="900"/>
+    <img src="figures/pipeline.png" width="900"/>
     <br>
 </p>
 
 ## Mathesis-Autoformalizer
-- To formalize mathematical problem statements from natural language into formal Lean 4 code, we introduce Mathesis-Autoformalizer, the first autoformalization model trained with reinforcement learning. It generates syntactically valid and semantically faithful formal statements from natural language, making it well-suited for real-world settings where accurate formalization is critical.
 
-## Leanscorer
-- To enable a more fine-grained and reliable assessment, we propose LeanScorer, a novel framework yielding a continuous correctness score (0 to 1). This score allows for dynamic adjustment of decision thresholds according to task-specific precision/recall requirements.
+Translates natural-language math into **Lean 4** statements. Unlike training only on static parallel data, Mathesis-Autoformalizer uses **RL** with **composite rewards** (Lean compile / type-check up to `sorry`, semantic alignment, and downstream proof success via **HPO**), aiming for statements that are both faithful and usable by provers.
+
+## LeanScorer
+
+Produces a **continuous** correctness-style score from **0 to 1** for nuanced comparison beyond binary pass/fail, so you can tune thresholds for precision/recall. See `leanscorer.py` in this repository for the implementation used in the project.
+
 <p align="center">
     <br>
-    <img src="figures/leanscorer.jpg" width="900"/>
+    <img src="figures/leanscorer.png" width="900"/>
     <br>
 </p>
 
-
 ## Citation
-Please cite our paper if you use the data or code in this repo.
-```
+
+If you use the data or code, please cite the **ICLR 2026** proceedings version when available, and the arXiv preprint if helpful:
+
+```bibtex
 @misc{xuejun2025mathesisformaltheoremproving,
       title={Mathesis: Towards Formal Theorem Proving from Natural Languages}, 
       author={Yu Xuejun and Jianyuan Zhong and Zijin Feng and Pengyi Zhai and Roozbeh Yousefzadeh and Wei Chong Ng and Haoxiong Liu and Ziyi Shou and Jing Xiong and Yudong Zhou and Claudia Beth Ong and Austen Jeremy Sugiarto and Yaoxi Zhang and Wai Ming Tai and Huan Cao and Dongcai Lu and Jiacheng Sun and Qiang Xu and Shen Xin and Zhenguo Li},
